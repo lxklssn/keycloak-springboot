@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+
+<body th:include="layout :: bodyFragment(~{ :: .containercontent})">
+    <div class="containercontent container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Willkommen auf dem Keykloak-Summit Portal</h1>
+        </div>
+        <div>
+            <div class="well">
+                <a th:href="@{/intranet}">Kundenübersicht</a>
+            </div>
+            <div class="well">
+                <a th:href="@{/admin}">Administration</a>
+            </div>
+        </div>
+        <div id="pagefoot" th:include="layout :: footerFragment">Footer
+        </div>
+    </div>
+
+</body>
+</html>

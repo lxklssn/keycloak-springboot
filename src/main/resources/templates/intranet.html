@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+
+<body th:include="layout :: bodyFragment(~{ :: .containercontent})">
+<div class="containercontent container-fluid">
+    <div class="jumbotron text-center">
+        <h1>Hallo <span th:text="${username}">--name--</span></h1>
+    </div>
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a th:href="@{/}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Kunden</li>
+    </ol>
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Kundendaten
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Addresse</th>
+                        <th>Line of Business</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Addresse</th>
+                        <th>Line of Business</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <tr th:each="customer : ${customers}">
+                        <td th:text="${customer.id}">Text ...</td>
+                        <td th:text="${customer.name}">Text ...</td>
+                        <td th:text="${customer.address}">Text ...</td>
+                        <td th:text="${customer.lineOfBusiness}">Text...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Aktualisiert gestern um 11:59 Uhr</div>
+    </div>
+    <div id="pagefoot" th:include="layout :: footerFragment">Footer
+    </div>
+</div>
+
+</body>
+</html>

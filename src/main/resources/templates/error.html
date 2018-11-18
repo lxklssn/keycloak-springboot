@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+
+<body th:include="layout :: bodyFragment(~{ :: .containercontent})">
+<div class="containercontent container-fluid">
+    <div class="jumbotron text-center">
+        <h1>
+            Hallo <span th:text="${username}">--name--</span>
+        </h1>
+        <h2>Da ist etwas schief gelaufen! </h2>
+    </div>
+    <div>
+        <a href="/">Zurück zur Hauptseite</a>
+    </div>
+    <div id="pagefoot" th:include="layout :: footerFragment">Footer
+    </div>
+</div>
+
+</body>
+</html>

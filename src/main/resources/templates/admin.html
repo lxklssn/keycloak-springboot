@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+
+<body th:include="layout :: bodyFragment(~{ :: .containercontent})">
+<div class="containercontent container-fluid">
+    <div class="jumbotron text-center">
+        <h1>
+            Hallo Administrator <span th:text="${username}">--name--</span>
+        </h1>
+    </div>
+    <div>
+        Hier wird die Seite administriert, dieser Zugang sollte nicht allen Besuchern der Seite gewährt werden.
+        <br />
+        Hier gehts zur <a target="_blank" href="http://localhost:8080/auth/admin/master/console">Keycloak Administration</a>
+    </div>
+    <div id="pagefoot" th:include="layout :: footerFragment">Footer
+    </div>
+</div>
+
+</body>
+</html>
