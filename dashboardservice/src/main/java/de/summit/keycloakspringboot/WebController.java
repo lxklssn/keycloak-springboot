@@ -1,16 +1,11 @@
 package de.summit.keycloakspringboot;
 
+import de.summit.keycloakspringboot.customer.Customer;
 import de.summit.keycloakspringboot.customer.CustomerService;
-import org.keycloak.adapters.springsecurity.client.KeycloakClientRequestFactory;
 import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.ServletException;
@@ -19,8 +14,6 @@ import java.security.Principal;
 
 @Controller
 public class WebController {
-
-//    private final CustomerService customerService;
 
     @Autowired
     private KeycloakRestTemplate keycloakRestTemplate;
@@ -32,8 +25,8 @@ public class WebController {
 
     @GetMapping(path = "/intranet")
     public String intranet(Principal principal, Model model) {
-        ResponseEntity<Iterable> customerResponse = keycloakRestTemplate.getForEntity("http://localhost:8085/customer", Iterable.class);
-        model.addAttribute("customers", customerResponse.getBody());
+        Iterable customers = keycloakRestTemplate.getForEntity("http://localhost:8085/customer", Iterable.class).getBody();
+        model.addAttribute("customers", customers);
         model.addAttribute("username", principal.getName());
         return "intranet";
     }

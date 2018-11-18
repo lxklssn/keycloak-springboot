@@ -24,7 +24,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Autowired
     private KeycloakClientRequestFactory keycloakClientRequestFactory;
 
-
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public KeycloakRestTemplate keycloakRestTemplate() {
@@ -52,11 +51,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.cors()
-                .and()
-                .csrf()
-                .disable()
-                .authorizeRequests() //
+        http.authorizeRequests() //
                 .antMatchers("/intranet*") //
                 .authenticated() //
                 .antMatchers("/admin*") //
